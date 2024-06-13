@@ -2,21 +2,47 @@ import Product from "./product";
 
 describe("Product unit tests", () => {
   it("should throw error when id is empty", () => {
-    expect(() => {
+    // expect(() => {
+    //   const product = new Product("", "Product 1", 100);
+    // }).toThrowError("Id is required");
+    try {
       const product = new Product("", "Product 1", 100);
-    }).toThrowError("Id is required");
+    } catch (err: any) {
+      expect(err.message).toBe('product: Id is required');
+    }
   });
 
   it("should throw error when name is empty", () => {
-    expect(() => {
+    // expect(() => {
+    //   const product = new Product("123", "", 100);
+    // }).toThrowError("Name is required");
+    try {
       const product = new Product("123", "", 100);
-    }).toThrowError("Name is required");
+    } catch (err: any) {
+      expect(err.message).toBe('product: Name is required');
+    }
   });
 
   it("should throw error when price is less than zero", () => {
-    expect(() => {
+    // expect(() => {
+    //   const product = new Product("123", "Name", -1);
+    // }).toThrowError("Price must be greater than zero");
+    try {
       const product = new Product("123", "Name", -1);
-    }).toThrowError("Price must be greater than zero");
+    } catch (err: any) {
+      expect(err.message).toBe('product: Price must be greater than zero')
+    }
+  });
+
+  it("should throw error when id and name are empty", () => {
+    // expect(() => {
+    //   const product = new Product("", "", 100);
+    // }).toThrowError("Id is required");
+    try {
+      const product = new Product("", "", 100);
+    } catch (err: any) {
+      expect(err.message).toBe('product: Id is required,product: Name is required')
+    }
   });
 
   it("should change name", () => {
